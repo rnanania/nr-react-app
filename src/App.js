@@ -1,11 +1,9 @@
-import React, { Component } from 'react';
-import Radium, {StyleRoot} from 'radium';
+import React from 'react';
 import logo from './logo.svg';
-import './App.css';
-
+import styles from './App.css';
 import Person from './Person/Person';
 
-class App extends Component {
+class App extends React.Component {
   state = {
     persons: [
       { name: 'Rohit', age: 32 },
@@ -55,19 +53,17 @@ class App extends Component {
     }
 
     return (
-      <StyleRoot>
-        <div className="App">
-          <header className="App-header">
-            <img src={logo} className="App-logo" alt="logo" />
+        <div className={styles.App}>
+          <header className={styles.AppHeader}>
+            <img src={logo} className={styles.AppLogo} alt="logo" />
           </header>
           <div className="demo-area">
-            <button className="toggleButton" onClick={this.togglePersonsList}>Toggle Person's List</button>
+            <button className={styles.ToggleButton} onClick={this.togglePersonsList}>Toggle Person's List</button>
             {persons}
           </div>
         </div>
-      </StyleRoot>
     );
   }
 }
 
-export default Radium(App);
+export default App;
