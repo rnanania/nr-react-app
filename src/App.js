@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
 import { library } from '@fortawesome/fontawesome-svg-core'
-import { faTimesCircle } from '@fortawesome/free-solid-svg-icons'
+import { faTrash } from '@fortawesome/free-solid-svg-icons'
 
 import logo from './logo.svg';
 import './App.css';
-import Person from './Person/Person';
+import Person from './Person/person';
 
 // Font awesome icons addition to app.
-library.add(faTimesCircle);
+library.add(faTrash);
 
 class App extends Component {
   state = {
@@ -20,20 +20,28 @@ class App extends Component {
   };
 
   togglePersonsHandler = () => {
-    const showPersons = this.state.showPersons;
-    this.setState({showPersons : !showPersons});
+    this.setState((prevState, props) => {
+      return {
+        showPersons : !prevState.showPersons
+      }
+    });
   };
 
   nameChangeHandler = (id, event) => {
-    const persons = [...this.state.persons];
-    persons[id].name = event.target.value;
-    this.setState({ persons : persons })
+    const name = event.target.value;
+    this.setState((prevState) => {
+      const persons = [...prevState.persons];
+      persons[id].name = name;
+      return { persons : persons }
+    });
   };
 
   removeHandler = (id) => {
-    let persons = [...this.state.persons];
-    persons.splice(id,1);
-    this.setState({ persons : persons })
+    this.setState((prevState) => { 
+      let persons = [...prevState.persons];
+      persons.splice(id,1);  
+      return { persons : persons }
+    });
   }
 
   render() {
