@@ -8,7 +8,7 @@ const person = (props) => {
     // Classe based component can be done using React.createRef() instead of useRef().
     const inputElementRef = useRef(null);
 
-    // Effect to run first time compoennt mount.
+    // Effect to run first time component mount.
     useEffect(() => {
         console.info('One Time useEffect: ' + props.name);
         inputElementRef.current.focus();
@@ -37,21 +37,21 @@ const person = (props) => {
     });
 
     return (
-    <div className="Person">
-        <input 
-            ref={inputElementRef}
-            type="text" 
-            value={props.name} 
-            onChange={props.nameChange}/>
-        <p>I am {props.name} and {props.age} years old</p>
-        <p>{props.children}</p>
-        <FontAwesomeIcon className="delete-person" icon="trash" size="lg" title="remove" onClick={props.remove}/>
-    </div>
+        <div className="Person">
+            <input
+                ref={inputElementRef}
+                type="text"
+                value={props.name}
+                onChange={props.nameChange} />
+            <p>I am {props.name} and {props.age} years old</p>
+            <p>{props.children}</p>
+            <FontAwesomeIcon className="delete-person" icon="trash" size="lg" title="remove" onClick={props.remove} />
+        </div>
     );
 };
 
 person.propTypes = {
-    name: PropTypes.string, 
+    name: PropTypes.string,
     age: PropTypes.number,
     nameChange: PropTypes.func,
     remove: PropTypes.func
